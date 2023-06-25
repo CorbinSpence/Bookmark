@@ -1,3 +1,5 @@
+// TODO: use 'useMutation()' hook to execute SAVE_BOOK mutation insteade of saveBook()
+// TODO: use try catch blocks when saving book IDs to state
 import React, { useState, useEffect } from 'react';
 import {
   Container,

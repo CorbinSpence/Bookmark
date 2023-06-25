@@ -1,3 +1,6 @@
+// TODO: remove 'useEffect()' hook that sets state for userData
+// TODO: use 'useQuery()' hook to execute the get me query on load and save to a variable named userData
+// TODO: use 'useMutation()' hook to execute REMOVE_BOOK mutation in the handleSaveBook() function in stead of the saveBook() function from the 'API' file 
 import React, { useState, useEffect } from 'react';
 import {
   Container,
