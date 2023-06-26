@@ -5,7 +5,7 @@ import { Form, Button, Alert } from 'react-bootstrap';
 import { createUser } from '../utils/API';
 import Auth from '../utils/auth';
 import { useMutation, useQuery } from '@apollo/client'
-import { ADD_USER, LOGIN_USER } from '../../utils/mutations'
+import { ADD_USER, LOGIN_USER } from '../utils/mutations'
 
 const SignupForm = () => {
   // set initial form state
@@ -33,17 +33,20 @@ const SignupForm = () => {
     }
 
     try {
+      console.log(typeof userFormData)
       const {response} = await addUser({
         variable: {...userFormData}
       })
       // removed: const response = await createUser(userFormData);
-
+      console.log('Checking response.')
       if (!response.ok) {
         throw new Error('something went wrong!');
       }
 
+      console.log('Awaiting response')
       const { token, user } = await response.json();
       console.log(user);
+      console.log('Auth token.')
       Auth.login(token);
     } catch (err) {
       console.error(err);
