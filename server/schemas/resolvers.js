@@ -44,7 +44,7 @@ const resolvers = {
         saveBook: async (parent, {authors, description, title, bookId, image, link}, context)=>{
             console.log(context)
             if(context.user){
-                const user = User.findOneAndUpdate({_id: context.user._id}, {$push: {savedBooks:{authors, description, title, bookId, image, link}}})
+                const user = User.findOneAndUpdate({_id: context.user._id}, {$push: {savedBooks:{authors, description, title, bookId, image, link}}}, {new:true})
                 return user
             }
             throw new AuthenticationError('You are not logged in.')
@@ -53,7 +53,7 @@ const resolvers = {
         removeBook: async (parent, {bookId}, context)=>{
             console.log(context)
             if(context.user){
-                const user = User.findOneAndUpdate({_id: context.user._id}, {$pull: {savedBooks:{bookId: bookId}}})
+                const user = User.findOneAndUpdate({_id: context.user._id}, {$pull: {savedBooks:{bookId: bookId}}}, {new:true})
                 return user
             }
 

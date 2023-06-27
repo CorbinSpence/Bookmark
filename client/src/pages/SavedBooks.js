@@ -22,7 +22,7 @@ const SavedBooks = () => {
   const {loading, data} = useQuery(GET_ME)
   const [removeBook, {error}] = useMutation(REMOVE_BOOK);
   /*replaced*/
-  // const [userData, setUserData] = useState({});
+  const [user, setUser] = useState({});
 
   // use this to determine if `useEffect()` hook needs to run again
   const userData = data?.me || {}
@@ -76,7 +76,7 @@ const SavedBooks = () => {
       // }
 
       // remove: const updatedUser = await response.json();
-      // removed: setUserData(updatedUser);
+      setUser(response);
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
     } catch (err) {
