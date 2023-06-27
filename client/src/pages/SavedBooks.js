@@ -19,14 +19,15 @@ import { REMOVE_BOOK } from '../utils/mutations';
 
 const SavedBooks = () => {
   // new code
-  const {loading, userData} = useQuery(GET_ME)
+  const {loading, data} = useQuery(GET_ME)
   const [removeBook, {error}] = useMutation(REMOVE_BOOK);
   /*replaced*/
   // const [userData, setUserData] = useState({});
 
   // use this to determine if `useEffect()` hook needs to run again
+  const userData = data?.me || {}
   console.log(userData)
-  const userDataLength = Object.keys(userData).length;
+  //const userDataLength = Object.keys(userData).length;
   
   /*removed useEffect()*/
   // useEffect(() => {
@@ -84,7 +85,7 @@ const SavedBooks = () => {
   };
 
   // if data isn't here yet, say so
-  if (!userDataLength) {
+  if (loading) {
     return <h2>LOADING...</h2>;
   }
 
@@ -97,12 +98,12 @@ const SavedBooks = () => {
       </div>
       <Container>
         <h2 className='pt-5'>
-          {userData.savedBooks.length
+          {userData.savedBooks?.length
             ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
             : 'You have no saved books!'}
         </h2>
         <Row>
-          {userData.savedBooks.map((book) => {
+          {userData.savedBooks?.map((book) => {
             return (
               <Col md="4">
                 <Card key={book.bookId} border='dark'>
