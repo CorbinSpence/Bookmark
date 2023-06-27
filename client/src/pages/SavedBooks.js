@@ -25,6 +25,7 @@ const SavedBooks = () => {
   // const [userData, setUserData] = useState({});
 
   // use this to determine if `useEffect()` hook needs to run again
+  console.log(userData)
   const userDataLength = Object.keys(userData).length;
   
   /*removed useEffect()*/
@@ -69,9 +70,9 @@ const SavedBooks = () => {
       })
       // removed: const response = await deleteBook(bookId, token);
 
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
+      // if (!response.ok) {
+      //   throw new Error('something went wrong!');
+      // }
 
       // remove: const updatedUser = await response.json();
       // removed: setUserData(updatedUser);
